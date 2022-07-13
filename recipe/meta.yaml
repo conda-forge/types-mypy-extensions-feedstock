@@ -1,5 +1,5 @@
 {% set name = "types-mypy-extensions" %}
-{% set version = "0.4.20" %}
+{% set version = "0.4.21" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/types-mypy-extensions-{{ version }}.tar.gz
-  sha256: b0e06b5aaad854478e481fffe4d2a85b0eddb4e66c2ab44ab0e6a0bc7c8fd1f2
+  sha256: 7006893da0f5abe8bd3843056bcea0eab285969899712afede9302bddf598548
 
 build:
   number: 0
