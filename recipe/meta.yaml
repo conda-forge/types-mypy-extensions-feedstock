@@ -7,22 +7,25 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/types-mypy-extensions-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/types-mypy-extensions-{{ version }}.tar.gz
   sha256: a482ec81320658aaf14600f7dd8e6e3bc76394cdae1a8f403c5fa36300068248
 
 build:
-  number: 0
+  number: 1
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
+    - python {{ python_min }}
+    - setuptools
     - pip
-    - python >=3.6
   run:
-    - python >=3.6
+    - python >={{ python_min }}
 
 test:
+  requires:
+    - python {{ python_min }}
   commands:
     - test -f $SP_DIR/mypy_extensions-stubs/__init__.pyi
 
