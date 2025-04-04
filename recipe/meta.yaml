@@ -1,5 +1,5 @@
 {% set name = "types-mypy-extensions" %}
-{% set version = "1.0.0.20240311" %}
+{% set version = "1.0.0.20250403" %}
 
 
 package:
@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/types-mypy-extensions-{{ version }}.tar.gz
-  sha256: a482ec81320658aaf14600f7dd8e6e3bc76394cdae1a8f403c5fa36300068248
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 2d196f5423df291edc07d4f4cb6a404f4e0541e4c2a2096c08cf36880c4181c2
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
