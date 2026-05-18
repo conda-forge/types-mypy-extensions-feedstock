@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "1.1.0.20260518"
+
+package:
+  name: types-mypy-extensions
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/t/types-mypy-extensions/types_mypy_extensions-${{ version }}.tar.gz
+  sha256: 942a40b112baf755bf3dc8046f2cb5dd7f11c7d9abb49cc35bb7c00e1be6e920
+
+build:
+  number: 1
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - package_contents:
+      site_packages:
+        - mypy_extensions-stubs/__init__.pyi
+  - python:
+      imports: []
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/python/typeshed
+  summary: Typing stubs for mypy-extensions
+  license: Apache-2.0 AND MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - fhoehle
+    - conda-forge/mypy
